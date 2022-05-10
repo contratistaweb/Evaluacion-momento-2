@@ -3,6 +3,8 @@ from clases.Cliente import Cliente
 
 ciclista = Ciclista()
 cliente = Cliente()
+banco = Cliente()
+banco.listaClientes=([])
 ciclista.ciclistas = ([])
 tiemposCrono = []
 mejorCrono = None
@@ -71,9 +73,73 @@ while(menuPrincipal != 0):
         
 
     elif(menuPrincipal == 2):
-        print("Ejercicio Banco")
+        print(".........................")
+        print("...... Menu Banco .......")
+        print(".........................")
+        print("1 Para Ingresar Un Cliente")
+        print("2 Para Consultar Un Cliente")
+        print("3 Para Consignar dinero a la Cuenta un Cliente")
+        print("4 Para Retirar dinero de la Cuenta un Cliente")
+        print("0 Para Salir") 
+        menuBanco = int(input("Digite una opcion: "))
+        
+        while(menuBanco != 0):
+
+            if menuBanco == 1:
+                cliente.nombre = input("Nombre: ")
+                cliente.apellido = input("Apellido: ")
+                cliente.cedula = int(input("Cedula: "))
+                cliente.cuenta = int(input("cuenta: "))
+                cliente.saldo = int(input("saldo: "))
+                banco.listaClientes.append([cliente.nombre,cliente.apellido,cliente.cedula,cliente.cuenta,cliente.saldo])
+                print(banco.listaClientes)
+                print(".........................")
+                print("*** Registro Guardado ***")
+                print(".........................")
+                
+
+            elif menuBanco == 2:
+                cedula = int(input("Digite la cedula del cliente: "))
+                for i in range(0, len(banco.listaClientes)):
+                    if banco.listaClientes[i][2] == cedula:
+                        print(banco.listaClientes[i])
+            
+            elif menuBanco == 3:
+
+                cedula = int(input("Digite la cedula del cliente: "))
+                valorConsignacion = int(input("Valor a consignar: "))
+
+                for i in range(0, len(banco.listaClientes)):
+                    if banco.listaClientes[i][2] == cedula:
+                        banco.listaClientes[i][4] = banco.listaClientes[i][4] + valorConsignacion
+                        print(f'nuevo saldo: {banco.listaClientes[i][4]}')
+
+            elif menuBanco == 4:
+
+                cedula = int(input("Digite la cedula del cliente: "))
+                valorConsignacion = int(input("Valor a retirar: "))
+
+                for i in range(0, len(banco.listaClientes)):
+                    if banco.listaClientes[i][2] == cedula:
+                        banco.listaClientes[i][4] = banco.listaClientes[i][4] - valorConsignacion
+                        print(f'nuevo saldo: {banco.listaClientes[i][4]}')
+
+            else:
+                print("Digite una opcion valida")
+            
+            print(".........................")
+            print("...... Menu Banco .......")
+            print(".........................")
+            print("1 Para Ingresar Un Cliente")
+            print("2 Para Consultar Un Cliente")
+            print("3 Para Consignar dinero a la Cuenta un Cliente")
+            print("4 Para Retirar dinero de la Cuenta un Cliente")
+            print("0 Para Salir")
+            menuBanco = int(input("Digite una opcion: "))
+            
+
+
     elif(menuPrincipal != 0):
         print("Digite una opcion valida")
-
-else:
-    print("Hasta Pronto")
+    else:
+        print("Hasta Pronto")
