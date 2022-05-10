@@ -1,6 +1,4 @@
-from clases.Persona import Persona
-
-class Ciclista(Persona):
+class Ciclista():
     def __int__(self):
         self.__equipo = None
         self.__pais = None
