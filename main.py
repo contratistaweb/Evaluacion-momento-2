@@ -9,12 +9,13 @@ banco.listaClientes=([])
 ciclista.ciclistas = ([])
 tiemposCrono = []
 mejorCrono = None
-menuPrincipal = 1
-menuCiclista = 1
+menuPrincipal = 99
+menuCiclista = 99
 
 ############################################################################
 
 while(menuPrincipal != 0):
+
     print(".............................")
     print("...... Menu Principal .......")
     print(".............................")
@@ -23,20 +24,19 @@ while(menuPrincipal != 0):
     print("0 Para Salir") 
     menuPrincipal = int(input("Digite una opcion del menu principal: "))
 
-    if(menuPrincipal == 1):
-        print(".........................")
-        print("...... Menu Crono .......")
-        print(".........................")
-        print("1 Para Ingresar Ciclista")
-        print("0 Para Salir") 
+    if menuPrincipal == 1:
 
-        while(menuCiclista != 0):
+        while menuCiclista != 0:
+            print(".........................")
+            print("...... Menu Crono .......")
+            print(".........................")
+            print("1 Para Ingresar Ciclista")
+            print("0 Para Salir") 
             menuCiclista = int(input("Digite una opcion: "))
 
             if(menuCiclista == 1):
-                opcion = 1
-
-                while(opcion != 0):
+                accionCiclistas = 99
+                while(accionCiclistas != 0):
                     ciclista.nombre = input("Nombre: ")
                     ciclista.edad = int(input("Edad: "))
                     ciclista.pais = input("Pais: ")
@@ -47,33 +47,36 @@ while(menuPrincipal != 0):
                     print("...................")
                     print("1 Para Ingresar Nuevo Registro")
                     print("0 Para Salir") 
-                    opcion = int(input("Seleccione una opcion: "))
-                    menuCiclista = opcion
+                    accionCiclistas = int(input("Seleccione una opcion: "))
                     print("...................")
-                
 
-            elif(menuCiclista != 0):
+            elif(menuCiclista == 0):
+                print("Hasta Pronto")
+                for i in range(0, len(ciclista.ciclistas)):
+                    tiemposCrono.append(ciclista.ciclistas[i][4])
+
+                    menorCrono = min(tiemposCrono)
+                    indexMejorCrono = tiemposCrono.index(menorCrono)
+
+                    print("El ciclista con el mejor crono de la prueba fue: ")
+                    print("Nombre: ", ciclista.ciclistas[indexMejorCrono][0])
+                    print("Edad: ", ciclista.ciclistas[indexMejorCrono][1])
+                    print("Pais: ", ciclista.ciclistas[indexMejorCrono][2])
+                    print("Equipo: ", ciclista.ciclistas[indexMejorCrono][3])
+                    print("Tiempo: ", ciclista.ciclistas[indexMejorCrono][4], "Minutos")
+                    print("...................")
+
+            else:
                 print("Digite una opcion valida")
-
-        else:
-            print("Hasta Pronto")
-
-        for i in range(0, len(ciclista.ciclistas)):
-            tiemposCrono.append(ciclista.ciclistas[i][4])
-
-        menorCrono = min(tiemposCrono)
-        indexMejorCrono = tiemposCrono.index(menorCrono)
-
-        print("El ciclista con el mejor crono de la prueba fue: ")
-        print("Nombre: ", ciclista.ciclistas[indexMejorCrono][0])
-        print("Edad: ", ciclista.ciclistas[indexMejorCrono][1])
-        print("Pais: ", ciclista.ciclistas[indexMejorCrono][2])
-        print("Equipo: ", ciclista.ciclistas[indexMejorCrono][3])
-        print("Tiempo: ", ciclista.ciclistas[indexMejorCrono][4], "Minutos")
-        print("...................")
+                print(".........................")
+                print("...... Menu Crono .......")
+                print(".........................")
+                print("1 Para Ingresar Ciclista")
+                print("0 Para Salir") 
+                menuCiclista = int(input("Digite una opcion: "))
         
 
-    elif(menuPrincipal == 2):
+    elif menuPrincipal == 2:
         print(".........................")
         print("...... Menu Banco .......")
         print(".........................")
@@ -104,6 +107,10 @@ while(menuPrincipal != 0):
                 for i in range(0, len(banco.listaClientes)):
                     if banco.listaClientes[i][2] == cedula:
                         print(banco.listaClientes[i])
+                    else:
+                        print(".........................")
+                        print("*** Cliente no existe ***")
+                        print(".........................")
             
             elif menuBanco == 3:
 
@@ -137,10 +144,17 @@ while(menuPrincipal != 0):
             print("4 Para Retirar dinero de la Cuenta un Cliente")
             print("0 Para Salir")
             menuBanco = int(input("Digite una opcion: "))
-            
 
-
-    elif(menuPrincipal != 0):
-        print("Digite una opcion valida")
-    else:
+    elif menuPrincipal == 0:
         print("Hasta Pronto")
+
+    else:
+        print("Digite una opcion valida")
+        print(".............................")
+        print("...... Menu Principal .......")
+        print(".............................")
+        print("1 Para Ejercicio Crono")
+        print("2 Para Ejercicio Banco")
+        print("0 Para Salir") 
+        menuPrincipal = int(input("Digite una opcion del menu principal: "))
+
